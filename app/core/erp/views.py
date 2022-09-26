@@ -1,6 +1,20 @@
-from django.http import HttpResponse
 from django.shortcuts import render
+from core.erp.models import Type, Estudiante
+
 
 # Create your views here.
 def miprimeravista(request):
-    return HttpResponse('Hola esta es mi primera URL')
+    data = {
+        'name' : 'William',
+        'tipo' : Type.objects.all()
+    }
+
+    return render(request,'index.html', data)
+
+def misegundavista(request):
+    data = {
+        'name' : 'William',
+        'estudiante' : Estudiante.objects.all()
+    }
+
+    return render(request,'second.html', data)
