@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <ul>
+        {% for Estudiante in estudiante %}
+            <li>{{Estudiante.names}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
