@@ -1,9 +1,10 @@
 {% extends 'index.html' %}
 
 {% block content %}
+
+    <a href="{% url 'erp:vista2' %}">Click</a>
+
     <ul>
-        {% for Estudiante in estudiante %}
-            <li>{{Estudiante.names}}</li>
-        {% endfor %}
+
     </ul>
 {% endblock %}

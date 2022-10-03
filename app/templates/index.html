@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>
-    MI PRIMERA PAGINA WEB
-</h1>
+{% extends 'body.html' %}
 
 {% block content %}
-    <ul>
-        {% for Type in tipo %}
-            <li>{{Type.name}}</li>
-        {% endfor %}
-    </ul>
-{% endblock %}
 
-<p>{{ name }}</p>
-</body>
-</html>
+{% endblock %}

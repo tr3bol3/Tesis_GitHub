@@ -1,20 +1,20 @@
 from django.shortcuts import render
-from core.erp.models import Type, Estudiante
+
+from core.erp.models import Category, Product
 
 
-# Create your views here.
-def miprimeravista(request):
+def myfirstview(request):
     data = {
-        'name' : 'William',
-        'tipo' : Type.objects.all()
+        'name': 'William',
+        'categories': Category.objects.all()
     }
+    return render(request, 'index.html', data)
 
-    return render(request,'index.html', data)
 
-def misegundavista(request):
+def mysecondview(request):
     data = {
-        'name' : 'William',
-        'estudiante' : Estudiante.objects.all()
+        'name': 'William',
+        'categories': Category.objects.all(),
+        'products': Product.objects.all()
     }
-
-    return render(request,'second.html', data)
+    return render(request, 'second.html', data)

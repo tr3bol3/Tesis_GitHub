@@ -1,29 +1,9 @@
 from config.wsgi import *
-from core.erp.models import Type
+from core.erp.models import *
 
-# Listar
-query = Type.objects.all()
-print(query)
+# LISTAR
 
-# Insertar
+print(Category.objects.all())
 
-#t = Type()
-#t.name = "No Becado"
-#t.save()
-
-# Edicion
-
-#try:
-#    t = Type.objects.get(pk = 2)
-#    t.name = 'Presidente'
-#    t.save()
-#except Exception as e:
-#    print(e)
-
-# Eliminacion
-
-#try:
-#    t = Type.objects.get(id=2)
-#    t.delete()
-#except Exception as e:
-#    print(e)
+for i in Category.objects.filter():
+    print(i)
