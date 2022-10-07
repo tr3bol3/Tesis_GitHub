@@ -1,0 +1,38 @@
+{% extends 'list.html' %}
+
+{% block columns %}
+<tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">CI</th>
+    <th scope="col">Sexo</th>
+    <th scope="col">Becado</th>
+    <th scope="col">Limitaciones</th>
+    <th scope="col">Carrera</th>
+    <th scope="col">Año</th>
+    <th scope="col">Facultad</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock %}
+
+{% block rows %}
+
+{% for e in estudiante %}
+<tr>
+    <td>{{e.nombre}}</td>
+    <td>{{e.lastName}}</td>
+    <td>{{e.ci}}</td>
+    <td>{{e.sex}}</td>
+    <td>{{e.becado}}</td>
+    <td>{{e.limitaciones}}</td>
+    <td>{{e.carrera}}</td>
+    <td>{{e.anno}}</td>
+    <td>{{e.facultad}}</td>
+    <td>
+        <button type="button" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i></button>
+    </td>
+</tr>
+{% endfor %}
+
+{% endblock %}
