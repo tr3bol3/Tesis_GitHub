@@ -3,7 +3,7 @@ from core.erp.models import *
 
 # LISTAR
 
-print(Category.objects.all())
+print(Estudiante.objects.all())
 
-for i in Category.objects.filter():
-    print(i)
+for i in Estudiante.objects.filter():
+    print(i.ausencia_estudiante_set.count())
