@@ -1,13 +1,8 @@
 {% load static %}
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
+
     <div class="container">
-        <a href="#" class="navbar-brand">
-            <img src="{% static 'img/logo.jpg' %}" alt="AdminLTE Logo"
-                 class="brand-image"
-                 style="opacity: .8">
-            <span class="brand-text font-weight-light">GOE</span>
-        </a>
         <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,20 +12,51 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                       class="nav-link dropdown-toggle"><i class="fa fa-wrench"></i> </a>
-                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                        <li><a href="#" class="dropdown-item"><i class="fa fa-street-view"></i> Estudiantes</a></li>
-                        <li><a href="#" class="dropdown-item"><i class="fa fa-briefcase"></i> Trabajadores</a></li>
-                        <li><a href="#" class="dropdown-item"><i class="fa fa-book"></i> Planificaciones</a></li>
-                        <li><a href="#" class="dropdown-item"><i class="fa fa-sticky-note"></i> Cortes</a></li>
-                        <li><a href="#" class="dropdown-item"><i class="fa fa-calendar"></i> Reportes Mensuales</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
+
             </ul>
         </div>
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+            <li class="nav-item dropdown">
+                    <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       class="nav-link dropdown-toggle"><i class="fa fa-wrench"></i> Opciones</a>
+                    <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
+                        <li><a href="http://127.0.0.1:8000/erp/estudiante/list" class="dropdown-item"><i
+                                class="fa fa-street-view"></i> Lista de Estudiantes</a></li>
+                        <li><a href="http://127.0.0.1:8000/erp/trabajador/list" class="dropdown-item"><i
+                                class="fa fa-briefcase"></i> Lista de Trabajadores</a></li>
+                        <li><a class="dropdown-item"><i class="fa fa-exclamation-triangle"></i> Ausencias</a></li>
+                        <ul>
+                            <li><a href="http://127.0.0.1:8000/erp/ausencia_estudiante/list" class="dropdown-item">Estudiantes</a>
+                            </li>
+                            <li><a href="http://127.0.0.1:8000/erp/ausencia_trabajador/list" class="dropdown-item">Trabajadores</a>
+                            </li>
+                        </ul>
+                        </a></li>
+                        <li><a href="#" class="dropdown-item"><i class="fa fa-book"></i> Planificaciones</a></li>
+                        <ul>
+                            <li><a href="http://127.0.0.1:8000/erp/guardia_trabajador_diurno/list"
+                                   class="dropdown-item">Trabajadores Diurno</a></li>
+                            <li><a href="http://127.0.0.1:8000/erp/guardia_trabajador_nocturno/list"
+                                   class="dropdown-item">Trabajadores Nocturno</a></li>
+                            <li><a href="http://127.0.0.1:8000/erp/guardia_estudiante_externo_diurno/list"
+                                   class="dropdown-item">Estudiantes Externos Diurno</a></li>
+                            <li><a href="http://127.0.0.1:8000/erp/guardia_estudiante_femenina_diurno/list"
+                                   class="dropdown-item">Estudiantes Femenina Diurno</a></li>
+                            <li><a href="http://127.0.0.1:8000/erp/guardia_estudiante_femenina_nocturno/list"
+                                   class="dropdown-item">Estudiantes Femenina Nocturno</a></li>
+                            <li><a href="http://127.0.0.1:8000/erp/guardia_estudiante_masculino_nocturno/list"
+                                   class="dropdown-item">Estudiantes Masculino Nocturno</a></li>
+                        </ul>
+
+                        <li><a href="http://127.0.0.1:8000/erp/corte/list" class="dropdown-item"><i
+                                class="fa fa-sticky-note"></i> Cortes</a></li>
+                        <li><a href="http://127.0.0.1:8000/erp/reporte_mensual/list" class="dropdown-item"><i
+                                class="fa fa-calendar"></i> Reportes Mensuales</a></li>
+                    </ul>
+                </li>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="far fa-bell"></i>
