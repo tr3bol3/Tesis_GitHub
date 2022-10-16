@@ -1,36 +1,191 @@
 {% extends 'home.html' %}
 {% block body %}
-    <body class="hold-transition layout-top-nav">
-    <div class="wrapper">
-        <!-- Header -->
-        {% include 'header.html' %}
-        <!-- Content -->
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark"> Bienvenido</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Layout</a></li>
-                            </ol>
-                        </div>
+<body class="hold-transition layout-top-nav">
+<div class="wrapper">
+    <!-- Header -->
+    {% include 'header.html' %}
+    <!-- Content -->
+    <div class="content-wrapper">
+        <div class="content-header">
+            <div class="container">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <!-- <ol class="breadcrumb float-sm-right">
+                             <li class="breadcrumb-item"><a href="#">Home</a></li>
+                             <li class="breadcrumb-item"><a href="#">Layout</a></li>
+                         </ol> -->
                     </div>
                 </div>
             </div>
-            <div class="content">
-                <div class="container">
-                    {% block content %}
+        </div>
+        <div class="content">
+            <div class="container">
+                {% block content %}
 
-                    {% endblock %}
-                </div>
+                {% endblock %}
             </div>
         </div>
-        <!-- Footer -->
-        {% include 'footer.html' %}
     </div>
-    </body>
+    <!-- Footer -->
+    {% include 'footer.html' %}
+</div>
+
+<div class="sidenav">
+    <a href="/Home">Home</a>
+</div>
+{% block javascript %}
+{% endblock %}
+
+<!--MENU BAR-->
+<aside class="main-sidebar sidebar-dark-primary elevation-4" >
+
+    <a href="#" class="brand-link">
+        <span class="brand-text font-weight-light">Guardia Obrera Estudiantil</span>
+    </a>
+
+    <div class="sidebar" >
+
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="../../static/img/user.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Fidel Rojo Pérez</a>
+            </div>
+        </div>
+
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Listados
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/estudiante/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Estudiantes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/trabajador/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Trabajadores</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-exclamation-triangle"></i>
+                        <p>
+                            Ausencias
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/ausencia_estudiante/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Estudiantes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/ausencia_trabajador/list" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Trabajadores</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="http://127.0.0.1:8000/erp/corte/list" class="nav-link">
+                        <i class="nav-icon fa fa-sticky-note"></i>
+                        <p>
+                            Cortes
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="http://127.0.0.1:8000/erp/reporte_mensual/list" class="nav-link">
+                        <i class="nav-icon fa fa-calendar"></i>
+                        <p>
+                            Reportes Mensuales
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-book"></i>
+                        <p>
+                            Planificación
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/guardia_trabajador_diurno/list" class="nav-link">
+                                <p>Trabajadores Diurnos</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/guardia_trabajador_nocturno/list" class="nav-link">
+                                <p>Trabajadores Nocturno</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/guardia_estudiante_externo_diurno/list" class="nav-link">
+                                <p>Estudiantes Externo Diurno</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/guardia_estudiante_femenina_diurno/list"
+                               class="nav-link">
+                                <p>Estudiantes Femenina Diurno</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/guardia_estudiante_femenina_nocturno/list"
+                               class="nav-link">
+                                <p>Estudiantes Femenina Nocturno</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="http://127.0.0.1:8000/erp/guardia_estudiante_masculino_nocturno/list"
+                               class="nav-link">
+                                <p>Estudiantes Masculino Nocturno</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="" download="" class="nav-link">
+                        <i class="nav-icon fa fa-gavel"></i>
+                        <p>
+                            Reglamento
+                        </p>
+                    </a>
+                </li>
+
+
+            </ul>
+        </nav>
+
+    </div>
+
+</aside>
+<!--END MENU BAR-->
+</body>
 {% endblock %}
