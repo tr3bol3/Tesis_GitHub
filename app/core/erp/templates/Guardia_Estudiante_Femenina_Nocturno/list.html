@@ -4,31 +4,23 @@
 <tr>
     <th scope="col">Nombre</th>
     <th scope="col">Apellidos</th>
-    <th scope="col">CI</th>
-    <th scope="col">Sexo</th>
-    <th scope="col">Becado</th>
-    <th scope="col">Limitaciones</th>
     <th scope="col">Carrera</th>
-    <th scope="col">Año</th>
-    <th scope="col">Facultad</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Turno</th>
     <th scope="col">Opciones</th>
 </tr>
 {% endblock %}
 
 {% block rows %}
 
-{% for e in object_list %}
-{% if e.limitaciones == False%}
+{% for gefn in object_list %}
+{% if gefn.estudiante.sex == 'F' and gefn.diurno == False and gefn.estudiante.becado == True%}
 <tr>
-    <td>{{e.nombre}}</td>
-    <td>{{e.lastName}}</td>
-    <td>{{e.ci}}</td>
-    <td>{{e.sex}}</td>
-    <td>{{e.becado}}</td>
-    <td>{{e.limitaciones}}</td>
-    <td>{{e.carrera}}</td>
-    <td>{{e.anno}}</td>
-    <td>{{e.facultad}}</td>
+    <td>{{gefn.estudiante.nombre }}</td>
+    <td>{{gefn.estudiante.lastName}}</td>
+    <td>{{gefn.estudiante.carrera}}</td>
+    <td>{{gefn.day| date:"d/m"}}</td>
+    <td>{{gefn.turno}}</td>
     <td>
         <button type="button" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></button>
         <button type="button" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i></button>

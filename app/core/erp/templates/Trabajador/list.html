@@ -1,0 +1,28 @@
+{% extends 'list.html' %}
+
+{% block columns %}
+<tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">CI</th>
+    <th scope="col">Área</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock %}
+
+{% block rows %}
+
+{% for t in object_list %}
+<tr>
+    <td>{{t.nombre }}</td>
+    <td>{{t.lastName}}</td>
+    <td>{{t.ci}}</td>
+    <td>{{t.area}}</td>
+    <td>
+        <button type="button" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></button>
+        <button type="button" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i></button>
+    </td>
+</tr>
+{% endfor %}
+
+{% endblock %}
