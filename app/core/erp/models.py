@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 
+from django.forms import model_to_dict
+
 from core.erp.choices import gender_choices
 
 
@@ -10,7 +12,7 @@ class Estudiante(models.Model):
     ci = models.CharField(max_length=11, unique=True, verbose_name='CI', primary_key=True)
     becado = models.BooleanField(verbose_name='Becado')
     limitaciones = models.BooleanField(verbose_name='Limitaciones')
-    anno = models.IntegerField(default=1, verbose_name='Año')
+    anno = models.IntegerField(verbose_name='Año')
     carrera = models.CharField(max_length=50, verbose_name='Carrera')
     sex = models.CharField(max_length=1, verbose_name='Sexo')
     facultad = models.CharField(max_length=150, verbose_name='Facultad')
@@ -27,9 +29,9 @@ class Estudiante(models.Model):
 
 
 class Trabajador(models.Model):
-    ci = models.CharField(max_length=11, unique=True, verbose_name='CI', primary_key=True)
     nombre = models.CharField(max_length=150, verbose_name='Nombre')
     lastName = models.CharField(max_length=150, verbose_name='Apellidos')
+    ci = models.CharField(max_length=11, unique=True, verbose_name='CI', primary_key=True)
     area = models.CharField(max_length=150, verbose_name='Área de Trabajo')
     user = models.CharField(max_length=50, verbose_name='Usuario')
     password = models.CharField(max_length=50, verbose_name='Contraseña')
@@ -48,7 +50,7 @@ class Trabajador(models.Model):
 
 
 class Guardia_Trabajador(models.Model):
-    trabajador = models.ForeignKey(Trabajador, on_delete=models.DO_NOTHING)
+    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
     day = models.DateField(verbose_name='Fecha')
     turno = models.CharField(max_length=1, verbose_name='Turno')
     diurno = models.BooleanField(verbose_name='Diurno')
@@ -62,7 +64,7 @@ class Guardia_Trabajador(models.Model):
 
 
 class Guardia_Estudiante(models.Model):
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.DO_NOTHING)
+    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
     day = models.DateField(verbose_name='Fecha')
     turno = models.CharField(max_length=1, verbose_name='Turno')
     diurno = models.BooleanField(verbose_name='Diurno')
@@ -78,7 +80,11 @@ class Guardia_Estudiante(models.Model):
 
 class Ausencia_Estudiante(models.Model):
     fecha = models.DateField(verbose_name='Fecha')
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.DO_NOTHING)
+    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
 
 
     class Meta:
@@ -88,7 +94,7 @@ class Ausencia_Estudiante(models.Model):
 
 class Ausencia_Trabajador(models.Model):
     fecha = models.DateField(verbose_name='Fecha')
-    trabajador = models.ForeignKey(Trabajador, on_delete=models.DO_NOTHING)
+    trabajador = models.ForeignKey(Trabajador, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Ausencia_Trabajador'
@@ -97,7 +103,7 @@ class Ausencia_Trabajador(models.Model):
 
 class Corte(models.Model):
     fecha = models.DateField(verbose_name='Fecha')
-    estudiante = models.ForeignKey(Estudiante, on_delete=models.DO_NOTHING)
+    estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
     justifiacion = models.CharField(max_length=300,verbose_name='Justificación')
     replanificacion = models.DateField(verbose_name='Fecha de replanificación')
 
