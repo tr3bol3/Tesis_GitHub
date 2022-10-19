@@ -13,8 +13,8 @@
 {% block content %}
 
 <div class="card card-default">
-    <div class="card-header" >
-        <h3 class="card-title" >
+    <div class="card-header">
+        <h3 class="card-title">
             {{ title }}
         </h3>
     </div>
@@ -36,24 +36,36 @@
         </table>
     </div>
     <div class="card-footer">
-        <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i> Añadir</button>
-        <button type="button" class="btn btn-danger"><i class="	fa fa-trash"></i> Eliminar</button>
+        <a href="{{ create_url }}" class="btn btn-primary btnTest">
+            <i class="fas fa-plus"></i> Añadir
+        </a>
+        <button type="button" class="btn btn-danger "><i class="	fa fa-trash"></i> Eliminar</button>
     </div>
 </div>
+{% endblock %}
 
 {% block javascript %}
 <script type="application/javascript">
         $(function () {
             $('#data').DataTable({
-                    retrieve: true,
-                    responsive: true,
-                    autoWidth: false
+                responsive: true,
+                autoWidth: false
+            });
+
+            $('.btnTest').on('click', function () {
+                $.ajax({
+                    url: '{% url 'erp:ausencia_estudiante_list' %}',
+                    type: 'POST',
+                    data: {id: 1},
+                    dataType: 'json'
+                }).done(function (data) {
+                    console.log(data);
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    alert(textStatus+': '+errorThrown);
+                }).always(function (data) {
+                });
             });
         });
 
-
-
 </script>
-{% endblock %}
-
 {% endblock %}

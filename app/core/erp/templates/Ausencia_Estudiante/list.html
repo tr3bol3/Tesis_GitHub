@@ -15,8 +15,12 @@
     <td>{{e.fecha| date:"d/m/Y"}}</td>
     <td>{{e.estudiante.ci}}</td>
     <td>
-        <button type="button" class="btn btn-warning btn-xs"><i class="fas fa-edit"></i></button>
-        <button type="button" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i></button>
+        <a href="{% url 'erp:ausencia_estudiante_update' e.id %}" class="btn btn-warning btn-xs btn-flat">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{% url 'erp:ausencia_estudiante_delete' e.id %}" type="button" class="btn btn-danger btn-xs btn-flat">
+            <i class="fas fa-trash-alt"></i>
+        </a>
     </td>
 </tr>
 {% endfor %}
