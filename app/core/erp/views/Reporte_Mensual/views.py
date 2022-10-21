@@ -1,4 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from core.erp.forms import ReporteMensualForm
@@ -7,6 +10,11 @@ from core.erp.models import Reporte_Mensual
 class ReporteMensualListView(ListView):
     model = Reporte_Mensual
     template_name = 'reporte_mensual/list.html'
+
+    @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
 
     def get_context_data(self, **kwargs):
@@ -23,6 +31,11 @@ class ReporteMensualCreateView(CreateView):
     template_name = 'Reporte_Mensual/create.html'
     success_url = reverse_lazy('erp:reporte_mensual_list')
 
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Añadir un nuevo Reporte Mensual'
@@ -37,6 +50,9 @@ class ReporteMensualUpdateView(UpdateView):
     template_name = 'reporte_mensual/create.html'
     success_url = reverse_lazy('erp:reporte_mensual_list')
 
+
+
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -56,6 +72,11 @@ class ReporteMensualDeleteView(DeleteView):
     form_class = ReporteMensualForm
     template_name = 'reporte_mensual/delete.html'
     success_url = reverse_lazy('erp:reporte_mensual_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

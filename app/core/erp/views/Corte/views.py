@@ -1,4 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from core.erp.forms import CorteForm
@@ -7,6 +10,11 @@ from core.erp.models import Corte
 class CorteListView(ListView):
     model = Corte
     template_name = 'corte/list.html'
+
+    @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -22,6 +30,10 @@ class CorteCreateView(CreateView):
     template_name = 'Corte/create.html'
     success_url = reverse_lazy('erp:corte_list')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Añadir una Corte'
@@ -36,6 +48,7 @@ class CorteUpdateView(UpdateView):
     template_name = 'corte/create.html'
     success_url = reverse_lazy('erp:corte_list')
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -54,6 +67,11 @@ class CorteDeleteView(DeleteView):
     model = Corte
     template_name = 'corte/delete.html'
     success_url = reverse_lazy('erp:corte_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
 
     def get_context_data(self, **kwargs):

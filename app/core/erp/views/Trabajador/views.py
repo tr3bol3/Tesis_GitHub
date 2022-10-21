@@ -1,4 +1,7 @@
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from core.erp.forms import TrabajadorForm
@@ -9,6 +12,12 @@ class TrabajadorListView(ListView):
     model = Trabajador
     print(model)
     template_name = 'trabajador/list.html'
+
+    @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,6 +34,10 @@ class TrabajadorCreateView(CreateView):
     template_name = 'Trabajador/create.html'
     success_url = reverse_lazy('erp:trabajador_list')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Añadir un nuevo Trabajador'
@@ -38,6 +51,11 @@ class TrabajadorUpdateView(UpdateView):
     form_class = TrabajadorForm
     template_name = 'trabajador/create.html'
     success_url = reverse_lazy('erp:trabajador_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -57,6 +75,11 @@ class TrabajadorDeleteView(DeleteView):
     model = Trabajador
     template_name = 'trabajador/delete.html'
     success_url = reverse_lazy('erp:trabajador_list')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

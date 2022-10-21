@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -13,6 +14,7 @@ class AusenciaEstudiantesListView(ListView):
 
 
     @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
@@ -41,6 +43,10 @@ class AusenciasEstudiantesCreateView(CreateView):
     template_name = 'Ausencia_Estudiante/create.html'
     success_url = reverse_lazy('erp:ausencia_estudiante_list')
 
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Añadir Ausencia de Estudiante'
@@ -56,6 +62,7 @@ class AusenciaEstudianteUpdateView(UpdateView):
     template_name = 'ausencia_estudiante/create.html'
     success_url = reverse_lazy('erp:ausencia_estudiante_list')
 
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
@@ -74,6 +81,10 @@ class AusenciaEstudianteDeleteView(DeleteView):
     model = Ausencia_Estudiante
     template_name = 'ausencia_estudiante/delete.html'
     success_url = reverse_lazy('erp:ausencia_estudiante_list')
+
+    def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
