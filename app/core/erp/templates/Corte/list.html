@@ -23,10 +23,10 @@
     <td>{{c.justifiacion}}</td>
     <td>{{c.replanificacion| date:"d/m/Y"}}</td>
     <td>
-        <a href="{% url 'erp:corte_update' c.id %}" class="btn btn-warning btn-xs btn-flat">
+        <a href="{% url 'erp:corte_update' c.id %}" class="btn btn-warning btn-xs ">
             <i class="fas fa-edit"></i>
         </a>
-        <a href="{% url 'erp:corte_delete' c.id %}" type="button" class="btn btn-danger btn-xs btn-flat">
+        <a href="{% url 'erp:corte_delete' c.id %}" type="button" class="btn btn-danger btn-xs ">
             <i class="fas fa-trash-alt"></i>
         </a>
     </td>

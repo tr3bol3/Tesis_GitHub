@@ -15,7 +15,7 @@
     <td>{{t.fecha| date:"d/m/Y"}}</td>
     <td>{{t.trabajador.ci}}</td>
     <td>
-        <a href="{% url 'erp:ausencia_trabajador_update' t.id %}" class="btn btn-warning btn-xs btn-flat">
+        <a href="{% url 'erp:ausencia_trabajador_update' t.id %}" class="btn btn-warning btn-xs">
             <i class="fas fa-edit"></i>
         </a>
         <a href="{% url 'erp:ausencia_trabajador_delete' t.id %}" type="button" class="btn btn-danger btn-xs btn-flat">
