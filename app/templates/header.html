@@ -40,6 +40,8 @@
                         <li class="dropdown"><a href="#"><span>Planificaciones</span> <i
                                 class="fa fa-ellipsis-v"></i></a>
                             <ul>
+                                <li><a href="http://127.0.0.1:8000/erp/guardia_general_trabajador/list">General de Trabajadores</a></li>
+                                <li><a href="http://127.0.0.1:8000/erp/guardia_general_estudiante/list">General de Estudiantes</a></li>
                                 <li><a href="http://127.0.0.1:8000/erp/guardia_trabajador_diurno/list">Trabajadores
                                     Diurno</a></li>
                                 <li><a href="http://127.0.0.1:8000/erp/guardia_trabajador_nocturno/list">Trabajadores
@@ -56,12 +58,34 @@
                         </li>
 
 
-                        <li><a href="http://127.0.0.1:8000/erp/corte/list" class="dropdown-item"></i> Cortes</a></li>
-                        <li><a href="http://127.0.0.1:8000/erp/reporte_mensual/list" class="dropdown-item"></i> Reportes
-                            Mensuales</a></li>
-                        <li><a href="http://127.0.0.1:8000/erp/reporte_semanal/list" class="dropdown-item"></i> Reportes
-                            Semanal</a></li>
+
+
+                        <li class="dropdown"><a href="#"><span>Cortes</span> <i
+                                class="fa fa-ellipsis-v"></i></a>
+                            <ul>
+                                <li><a href="http://127.0.0.1:8000/erp/aviso_corte_trabajador/list">Aviso a Trabajadores </a></li>
+                                <li><a href="http://127.0.0.1:8000/erp/aviso_corte_estudiante/list">Aviso a Estudiantes </a></li>
+                                <li><a href="http://127.0.0.1:8000/erp/corte_trabajador/list">Trabajadores </a></li>
+                                <li><a href="http://127.0.0.1:8000/erp/corte_estudiante/list">Estudiantes </a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="dropdown"><a href="#"><span>Reportes</span>
+                            <i class="fa fa-ellipsis-v"></i></a>
+                            <ul>
+                                <li><a href="http://127.0.0.1:8000/erp/reporte_semanal/list">Semanales</a></li>
+                                <li><a href="http://127.0.0.1:8000/erp/reporte_mensual/list">Mensuales</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li><a href="#" class="dropdown-item">Reglamento</a>
+                                </li>
+
                     </ul>
+
+
                 </li>
             </ul>
         </div>
@@ -107,21 +131,31 @@
                 </a>
                 <ul>
 
-                    <a class="exemplo" href="{% url 'logout' %}"> Logout
+                    <a class="logout" href="{% url 'logout' %}"> Logout
                         <i class="fas fa-power-off" aria-hidden="true"></i></a>
                     <script>
-                        $('a.exemplo').confirm({
-                             title: 'LOGOUT',
-                             content: "¿Está seguro que desea salir?",
-                             type: 'blue'
-                        });
-                        $('a.exemplo').confirm({
+                        $('a.logout').confirm({
+                            title: ' {{request.user.username}} Logout?',
+                            content: ' Usted será automáticamente deslogeado en 10 segundos. ',
+                            autoClose: 'logoutUser|10000',
+                            type: 'purple',
                             buttons: {
-                                hey: function(){
-                                    location.href = this.$target.attr('href');
+                                logoutUser: {
+                                    text: 'Deslogearme',
+                                    action: function () {
+                                        location.href = this.$target.attr('href');
+                                    }
+                                },
+                                cancel: {
+                                 text: 'Cancelar',
+                                function () {
+                                    $.alert('Usted a cancelado');
+                                }
                                 }
                             }
                         });
+
+
 
                     </script>
                 </ul>

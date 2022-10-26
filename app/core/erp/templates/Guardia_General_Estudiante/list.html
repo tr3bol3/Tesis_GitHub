@@ -1,0 +1,48 @@
+{% extends 'list.html' %}
+
+{% block columns %}
+<tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">Sexo</th>
+    <th scope="col">Becado</th>
+    <th scope="col">Diurna</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Turno</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock %}
+
+{% block rows %}
+
+{% for gge in object_list %}
+
+<tr>
+    <td>{{gge.estudiante.nombre }}</td>
+    <td>{{gge.estudiante.lastName}}</td>
+    <td>{{gge.estudiante.sex }}</td>
+    {% if gge.trabajador.becado == True %}
+    <td> Sí </td>
+    {% else %}
+    <td> No </td>
+    {% endif %}
+    {% if gge.diurno == True %}
+    <td> Sí </td>
+    {% else %}
+    <td> No </td>
+    {% endif %}
+    <td>{{gge.fecha| date:"d/m/Y"}}</td>
+    <td>{{gge.turno}}</td>
+    <td>
+        <a href="{% url 'erp:guardia_general_estudiante_update' gge.pk %}" class="btn btn-warning btn-xs ">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{% url 'erp:guardia_general_estudiante_delete' gge.pk %}" type="button" class="btn btn-danger btn-xs ">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+    </td>
+</tr>
+
+{% endfor %}
+
+{% endblock %}

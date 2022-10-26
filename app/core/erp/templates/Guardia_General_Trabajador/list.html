@@ -1,0 +1,48 @@
+{% extends 'list.html' %}
+
+{% block columns %}
+<tr>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
+    <th scope="col">Sexo</th>
+    <th scope="col">Becado</th>
+    <th scope="col">Diurna</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Turno</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock %}
+
+{% block rows %}
+
+{% for ggt in object_list %}
+
+<tr>
+    <td>{{ggt.trabajador.nombre }}</td>
+    <td>{{ggt.trabajador.lastName}}</td>
+    <td>{{ggt.trabajador.sex}}</td>
+    {% if ggt.trabajador.becado == True %}
+    <td> Sí </td>
+    {% else %}
+    <td> No </td>
+    {% endif %}
+    {% if ggt.diurno == True %}
+    <td> Sí </td>
+    {% else %}
+    <td> No </td>
+    {% endif %}
+    <td>{{ggt.fecha| date:"d/m/Y"}}</td>
+    <td>{{ggt.turno}}</td>
+    <td>
+        <a href="{% url 'erp:guardia_general_trabajador_update' ggt.pk %}" class="btn btn-warning btn-xs ">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{% url 'erp:guardia_general_trabajador_delete' ggt.pk %}" type="button" class="btn btn-danger btn-xs ">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+    </td>
+</tr>
+
+{% endfor %}
+
+{% endblock %}

@@ -8,6 +8,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from core.erp.forms import EstudianteForm
 from core.erp.models import Estudiante
 
+
 class EstudianteListView(ListView):
     model = Estudiante
     template_name = 'estudiante/list.html'
@@ -96,4 +97,8 @@ class EstudianteDeleteView(DeleteView):
         context['entity'] = 'Estudiante'
         context['list_url'] = reverse_lazy('erp:estudiante_list')
         return context
+
+
+
+
 

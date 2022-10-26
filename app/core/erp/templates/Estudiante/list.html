@@ -18,14 +18,21 @@
 {% block rows %}
 
 {% for e in object_list %}
-{% if e.limitaciones == False%}
 <tr>
     <td>{{e.nombre}}</td>
     <td>{{e.lastName}}</td>
     <td>{{e.ci}}</td>
     <td>{{e.sex}}</td>
-    <td>{{e.becado}}</td>
-    <td>{{e.limitaciones}}</td>
+    {% if e.becado == False%}
+        <td> No </td>
+    {% else %}
+        <td> Sí </td>
+    {% endif %}
+    {% if e.limitaciones == None%}
+    <td> No </td>
+    {% else %}
+    <td> {{e.limitaciones}}</td>
+    {% endif %}
     <td>{{e.carrera}}</td>
     <td>{{e.anno}}</td>
     <td>{{e.facultad}}</td>
@@ -33,12 +40,13 @@
         <a href="{% url 'erp:estudiante_update' e.ci %}" class="btn btn-warning btn-xs ">
             <i class="fas fa-edit"></i>
         </a>
-        <a href="{% url 'erp:estudiante_delete' e.ci %}" type="button" class="btn btn-danger btn-xs ">
+        <a href="{% url 'erp:estudiante_delete' e.ci %}" type="button" class="btn btn-danger btn-xs btnCancelar">
             <i class="fas fa-trash-alt"></i>
         </a>
     </td>
 </tr>
-{% endif %}
+
+
 {% endfor %}
 
 

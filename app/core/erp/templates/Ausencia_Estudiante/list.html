@@ -3,6 +3,8 @@
 {% block columns %}
 <tr>
     <th scope="col">Fecha</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellidos</th>
     <th scope="col">CI
     <th scope="col">Opciones</th>
 </tr>
@@ -13,12 +15,14 @@
 {% for e in object_list %}
 <tr>
     <td>{{e.fecha| date:"d/m/Y"}}</td>
+    <td>{{e.estudiante.nombre}}</td>
+    <td>{{e.estudiante.lastName}}</td>
     <td>{{e.estudiante.ci}}</td>
     <td>
         <a href="{% url 'erp:ausencia_estudiante_update' e.id %}" class="btn btn-warning btn-xs">
             <i class="fas fa-edit"></i>
         </a>
-        <a href="{% url 'erp:ausencia_estudiante_delete' e.id %}" type="button" class="btn btn-danger btn-xs">
+        <a href="{% url 'erp:ausencia_estudiante_delete' e.id %}" type="button" class="btn btn-danger btn-xs btnCancelar">
             <i class="fas fa-trash-alt"></i>
         </a>
     </td>

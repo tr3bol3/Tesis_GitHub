@@ -1,0 +1,22 @@
+{% extends 'form.html' %}
+{% block botton %}
+
+
+<button class="btn-sm" onclick = "createPopupWin('http://127.0.0.1:8000/erp/guardia_general_trabajador/add',
+            'GeeksforGeeks Website', 700, 680);">
+        Replanificar guardia al Trabajador
+    </button>
+
+<script>
+        function createPopupWin(pageURL, pageTitle,
+                    popupWinWidth, popupWinHeight) {
+            var left = (screen.width - popupWinWidth) / 2;
+            var top = (screen.height - popupWinHeight) / 4;
+
+            var myWindow = window.open(pageURL, pageTitle,
+                    'resizable=yes, width=' + popupWinWidth
+                    + ', height=' + popupWinHeight + ', top='
+                    + top + ', left=' + left);
+        }
+    </script>
+{% endblock %}

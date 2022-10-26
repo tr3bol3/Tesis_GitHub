@@ -1,0 +1,34 @@
+{% extends 'list.html' %}
+
+{% block columns %}
+<tr>
+    <th scope="col">Fecha de Aviso</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido</th>
+    <th scope="col">CI</th>
+    <th scope="col">Fecha de Citación</th>
+    <th scope="col">Opciones</th>
+</tr>
+{% endblock %}
+
+{% block rows %}
+
+{% for act in object_list %}
+<tr>
+    <td>{{act.fecha_aviso| date:"d/m/Y"}}</td>
+    <td>{{act.trabajador.nombre}}</td>
+    <td>{{act.trabajador.lastName}}</td>
+    <td>{{act.trabajador.ci}}</td>
+    <td>{{act.fecha_citacion| date:"d/m/Y"}}</td>
+    <td>
+        <a href="{% url 'erp:aviso_corte_trabajador_update' act.id %}" class="btn btn-warning btn-xs ">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{% url 'erp:aviso_corte_trabajador_delete' act.id %}" type="button" class="btn btn-danger btn-xs btnCancelar">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+    </td>
+</tr>
+{% endfor %}
+
+{% endblock %}

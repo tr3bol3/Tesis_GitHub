@@ -38,33 +38,46 @@
         <a href="{{ create_url }}" class="btn btn-primary btnTest">
             <i class="fas fa-plus"></i> Añadir
         </a>
-        <button type="button" class="btn btn-danger "><i class="fa fa-trash"></i> Eliminar</button>
+        <a href="{{ delete_all }}" class="btn btn-danger btnDelete">
+            <i class="fa fa-trash"></i> Eliminar Todo
+        </a>
     </div>
 </div>
 {% endblock %}
 
 {% block javascript %}
 <script type="application/javascript">
-        $(function () {
+
+
+        $('a.btnCancelar').confirm({
+            title: '¿Usted quiere eliminar?',
+            content: 'Este diálogo se cerrara automáticamente en 8 segundos si usted no responde.',
+            autoClose: 'cancelAction|8000',
+            type: 'red',
+            buttons: {
+                deleteUser: {
+                    text: 'Sí',
+                    action: function () {
+                        location.href = this.$target.attr('href');
+                    }
+                },
+                cancelAction: {
+                    text: 'Cancelar',
+                    function () {
+                        $.alert('Usted a cancelado');
+                    }
+                }
+            }
+        });
+
+
+    $(function () {
             $('#data').DataTable({
                 responsive: true,
                 autoWidth: false
             });
-
-            $('.btnTest').on('click', function () {
-                $.ajax({
-                    url: '{% url 'erp:ausencia_estudiante_list' %}',
-                    type: 'POST',
-                    data: {id: 1},
-                    dataType: 'json'
-                }).done(function (data) {
-                    console.log(data);
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    alert(textStatus+': '+errorThrown);
-                }).always(function (data) {
-                });
-            });
         });
+
 
 </script>
 {% endblock %}

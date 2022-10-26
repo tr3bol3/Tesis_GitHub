@@ -5,6 +5,9 @@
     <th scope="col">Nombre</th>
     <th scope="col">Apellidos</th>
     <th scope="col">CI</th>
+    <th scope="col">Sexo</th>
+    <th scope="col">Becado</th>
+    <th scope="col">Limitaciones</th>
     <th scope="col">Área</th>
     <th scope="col">Opciones</th>
 </tr>
@@ -17,12 +20,23 @@
     <td>{{t.nombre }}</td>
     <td>{{t.lastName}}</td>
     <td>{{t.ci}}</td>
+    <td>{{t.sex}}</td>
+    {% if t.becado == False%}
+        <td> No </td>
+    {% else %}
+        <td> Sí </td>
+    {% endif %}
+    {% if t.limitaciones == None%}
+    <td> No </td>
+    {% else %}
+        <td> {{t.limitaciones}} </td>
+    {% endif %}
     <td>{{t.area}}</td>
     <td>
         <a href="{% url 'erp:trabajador_update' t.ci %}" class="btn btn-warning btn-xs ">
             <i class="fas fa-edit"></i>
         </a>
-        <a href="{% url 'erp:trabajador_delete' t.ci %}" type="button" class="btn btn-danger btn-xs ">
+        <a href="{% url 'erp:trabajador_delete' t.ci %}" type="button" class="btn btn-danger btn-xs btnCancelar">
             <i class="fas fa-trash-alt"></i>
         </a>
     </td>

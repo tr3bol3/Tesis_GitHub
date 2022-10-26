@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+STATICFILES_DIRS = ['D:/Escuela/Actual/Seminario Profesional/TESIS/Proyecto/Tesis_GitHub_Community/app/static']
+
 
 # Application definition
 
@@ -40,12 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'import_export',
     # Apps
     'core.erp',
     'core.homepage',
     'core.login',
+    'core.reports',
     # Libs
     'widget_tweaks',
+    'django_extensions',
 
 ]
 
@@ -132,3 +137,9 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login/'
 
 LOGIN_URL = '/login/'
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}
+
